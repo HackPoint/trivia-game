@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "shared-api-interfaces": "libs/shared/api-interfaces",
+    "shared-api-services": "libs/shared/api-services",
+    "shared-data-services": "libs/shared/data-services",
+    "shared-ui": "libs/shared/ui",
+    "trivia": "apps/trivia",
+    "trivia-e2e": "apps/trivia-e2e"
+  }
+}
