@@ -15,8 +15,6 @@ export class TriviaService {
 
   getQuestions(): Observable<QuestionModel[]> {
     const questions: QuestionModel[] = [];
-    this.triviaStore.setLoading(true);
-
     return interval(300)
       .pipe(
         mergeMap(() => this.api.getQuestion()),

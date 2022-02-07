@@ -21,7 +21,6 @@ import {
 } from 'rxjs';
 import { QuestionModel } from './state/stores/trivia-questions.store';
 import { QuestionsQuery } from './state/queries/questions.query';
-import { TimeoutCounterDirective } from './timeout-counter.directive';
 import { Carousel } from 'primeng/carousel';
 import { TriviaService } from './state/services/trivia.service';
 

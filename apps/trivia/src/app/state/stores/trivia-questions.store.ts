@@ -15,8 +15,6 @@ export interface QuestionModel {
 
 export type QuestionState = EntityState<QuestionModel>
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +23,6 @@ export class TriviaQuestionsStore extends EntityStore<QuestionState> {
   constructor() {
     super();
   }
-
 
   updateAnswer(model: QuestionModel) {
     this.update(model.id, ({
