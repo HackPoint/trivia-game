@@ -5,16 +5,13 @@ import { ApiService } from '@api/services';
 import { QuestionModel, TriviaQuestionsStore } from '../stores/trivia-questions.store';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { QUESTIONS_STORE_DATA } from './mock';
-import { of } from 'rxjs';
 import DoneCallback = jest.DoneCallback;
 
 
 describe('TriviaService', () => {
   let service: TriviaService;
   let store: TriviaQuestionsStore;
-  let httpTestingController: HttpTestingController;
-
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,18 +19,14 @@ describe('TriviaService', () => {
       providers: [
         HttpClient,
         ApiService
-      ]
+       ]
     });
-    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(TriviaService);
     store = TestBed.inject(TriviaQuestionsStore);
-
-    jest.spyOn(service, 'getQuestions')
-      .mockReturnValue(of(QUESTIONS_STORE_DATA));
   });
 
   afterEach(() => {
-    httpTestingController.verify();
+    httpMock.verify();
   });
 
 
@@ -46,11 +39,17 @@ describe('TriviaService', () => {
   });
 
   it('should load all questions without duplicates', (done: DoneCallback) => {
+    httpMock = TestBed.inject(HttpTestingController);
+
     service.getQuestions().subscribe((questions: QuestionModel[]) => {
       expect(questions).not.toBe(null);
-      expect(questions.length).toBe(2);
+      expect(questions.length).toBe(10);
       done();
     });
-  });
 
+    /*const req = httpMock
+      .expectOne(`https://opentdb.com/api.php?amount=1&encode=base64&type=multiple`);
+    req.flush(QUESTIONS_STORE_DATA[0]);
+    done();*/
+  });
 });

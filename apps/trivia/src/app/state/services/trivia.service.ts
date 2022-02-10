@@ -45,7 +45,6 @@ export class TriviaService {
         toArray(),
         finalize(() => {
           this.triviaStore.set(questions);
-          this.triviaStore.setLoading(false);
         })
       );
   }
